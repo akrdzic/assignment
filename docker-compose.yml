@@ -1,0 +1,57 @@
+version : '3'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./docker/backend.dockerfile
+    image: assignment-backend
+    ports:
+     - "3010:3010"
+    volumes:
+     - ./backend/:/usr/src/app
+    working_dir: /usr/src/app
+    environment:
+     - NODE_ENV=dev
+     - JWT_SECRET=secret
+     - BCRYPT_PASSWORD_SALT=salt
+     - REDIS_EXPIRE_CACHE=60
+    command: sh -c 'yarn install; yarn start ;'
+    depends_on:
+     - db
+     - redis
+    links:
+     - db
+     - redis
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/frontend.dockerfile
+    image: assignment-frontend
+    volumes:
+     - ./frontend/:/usr/src/app
+    working_dir: /usr/src/app
+    environment:
+     - API_URL=http://localhost:3010
+    command: sh -c 'yarn install; yarn start;'
+    ports:
+      - '3000:3000'
+
+
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/db.dockerfile
+    environment:
+      - POSTGRES_DB=assignment
+      - POSTGRES_USER=assignment
+      - POSTGRES_PASSWORD=assignment
+    ports:
+      - '5432:5432'
+
+
+  redis:
+    image: "redis:alpine"
+    ports:
+     - "6379:6379"
