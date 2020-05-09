@@ -12,3 +12,4 @@ Usage:
 3. Create another account
 4. Upload your projects.
 5. You can compare you projects with projects from other users on the graph
+6. You can heart projects from other users
