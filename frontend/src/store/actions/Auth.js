@@ -43,9 +43,14 @@ const getLoginStatus = () => {
     };
 };
 
+const logout = () => {
+    return (dispatch) => dispatch({ type: ActionTypes.AUTH_LOGOUT });
+};
+
 
 export default {
     login,
     register,
     getLoginStatus,
+    logout,
 };

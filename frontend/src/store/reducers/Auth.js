@@ -23,6 +23,10 @@ const auth = (state = initialState, action) => {
             localStorage.removeItem(AccessToken);
 
             return { isUserLoggedIn: false };
+        case ActionTypes.AUTH_LOGOUT:
+            localStorage.removeItem(AccessToken);
+            
+            return { isUserLoggedIn: false };
         case ActionTypes.API_ERROR:
             const { error } = action;
             if (error.status === 401) {

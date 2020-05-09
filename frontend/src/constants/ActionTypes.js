@@ -4,6 +4,7 @@ export default {
     // auth
     AUTH_SUCCESS: 'AUTH_SUCCESS',
     AUTH_FAILED: 'AUTH_FAILED',
+    AUTH_LOGOUT: 'AUTH_LOGOUT',
     // posts list
     POSTS_LIST_RETRIEVED: 'POSTS_LIST_RETRIEVED',
     POST_CREATED: 'POST_CREATED',

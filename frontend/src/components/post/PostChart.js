@@ -38,7 +38,7 @@ const PostChart = props => {
                     })
                 }
                 {
-                    statistics.map(st => <ReferenceLine key={st.id} label={st.name} y={st.y} stroke="red" />)
+                    statistics.map(st => <ReferenceLine key={st.id} y={st.y} stroke="red" />)
                 }
                 <Legend verticalAlign="bottom" height={36}/>
             </LineChart>

@@ -7,4 +7,8 @@ Backend api will be available on http://localhost:3010
 
 Usage:
 
-Upload sample csv file to to start using.
+1. Signup with new account.
+2. Upload sample csv files to to create your projects.
+3. Create another account
+4. Upload your projects.
+5. You can compare you projects with projects from other users on the graph

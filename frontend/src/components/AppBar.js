@@ -9,6 +9,8 @@ import { Toolbar, Typography, Button } from '@material-ui/core';
 import MUIAppBar from '@material-ui/core/AppBar';
 import { AccountCircle } from '@material-ui/icons';
 
+import Auth from '../store/actions/Auth';
+
 const styles = () => ({
     title: {
         flexGrow: 1,
@@ -16,13 +18,14 @@ const styles = () => ({
 });
 
 const AppBar = props => {
-    const { classes, isUserLoggedIn, userEmail } = props;
+    const { classes, isUserLoggedIn, userEmail, logout } = props;
 
     return (<MUIAppBar position="static" color="secondary">
         <Toolbar>
             <Typography variant="h6" className={classes.title}>Chart posts</Typography>
             { isUserLoggedIn && <AccountCircle />  }
             { isUserLoggedIn &&  <Typography>{userEmail}</Typography>  }
+            { isUserLoggedIn &&  <Button color="primary" onClick={logout}>LOGOUT</Button>}
             { !isUserLoggedIn && <Link to="/login"><Button color="inherit"> Login </Button></Link> }
             { !isUserLoggedIn && <Link to="/signup"><Button color="inherit"> Sign up </Button></Link> }
         </Toolbar>
@@ -40,4 +43,8 @@ const mapStateToProps = state => ({
     userEmail: state.auth.email,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(AppBar));
+const mapDispatchToProps = (dispatch) => ({
+    logout: () => dispatch(Auth.logout()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(AppBar));
